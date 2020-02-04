@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-thread',
   templateUrl: './thread.component.html',
   styleUrls: ['./thread.component.css']
 })
-export class ThreadComponent implements OnInit {
-
+export class ThreadComponent {
+  @Input() threads: any[];
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

@@ -1,1 +1,113 @@
-<p>message works!</p>
+<mat-drawer-container class="side-container">
+    <!-- SideBar Design -->
+    <mat-drawer #drawer mode="side" position="end" class="drawer-container">
+        <div class="drawer-container">
+            <div class="drawer-header">
+                <div class="avatar-container">
+                    <div *ngIf="selected.avatar !== ''; then thenBlock else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <img src="{{selected.avatar}}" class="avatar" />
+                    </ng-template>
+                    <ng-template #elseBlock>
+                        <img src="assets/images/default.png" class="avatar" />
+                    </ng-template>
+                </div>
+                <div class="name"> {{ selected.first_name }} {{ selected.last_name }} </div>
+                <mat-icon (click)="toggleDrawer(message)" class="drawer-icon">close</mat-icon>
+            </div>
+            <div class="drawer-body">
+                <app-thread [threads]="threads"></app-thread>
+            </div>
+        </div>
+    </mat-drawer>
+    <!-- SideBar Content Design -->
+    <mat-drawer-content class="content">
+        <div class="sidebar">
+            <!-- User List -->
+            <mat-list role="list" *ngFor="let profile of users" class="profile-container">
+                <mat-list-item role="listitem"
+                    [ngClass]="{'profile-card': true, 'active-profile': profile.id === selected.id}"
+                    (click)="onProfileSelect(profile)" *ngIf="currentUser.id !== profile.id">
+                    <div>
+                        <div *ngIf="profile.avatar !== ''; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+                            <img src="{{profile.avatar}}" class="avatar" />
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <img src="assets/images/default.png" class="avatar" />
+                        </ng-template>
+                    </div>
+                    <div class="name"> {{ profile.first_name }} {{ profile.last_name }} </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <!-- Message List for Specific User -->
+        <div class="messages-container">
+            <div class="messages-header">
+                <div>
+                    <div *ngIf="selected.avatar !== ''; then thenBlock else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <img src="{{selected.avatar}}" class="avatar" />
+                    </ng-template>
+                    <ng-template #elseBlock>
+                        <img src="assets/images/default.png" class="avatar" />
+                    </ng-template>
+                </div>
+                <div class="name"> {{ selected.first_name }} {{ selected.last_name }} </div>
+            </div>
+            <div class="messages-body">
+                <div class="body-from-card" *ngFor="let message of messages" #fromUser="appFromUserDirective"
+                    [appFromUserDirective]="getFromUser(message)">
+                    <div class="from-card">
+                        <div class="from-card-left">
+                            <div *ngIf="fromUser.appFromUserDirective.avatar !== ''; then thenBlock else elseBlock">
+                            </div>
+                            <ng-template #thenBlock>
+                                <img src="{{fromUser.appFromUserDirective.avatar}}" class="avatar" />
+                            </ng-template>
+                            <ng-template #elseBlock>
+                                <img src="assets/images/default.png" class="avatar" />
+                            </ng-template>
+                        </div>
+                        <div class="from-card-right">
+                            <div class="form-card-profile">
+                                <div class="from-card-name">
+                                    {{ fromUser.appFromUserDirective.first_name }}
+                                    {{ fromUser.appFromUserDirective.last_name }}
+                                </div>
+                                <div class="from-card-time">
+                                    {{ message._created_at | date }}
+                                </div>
+                                <div *ngIf="message.thread === true">
+                                    <mat-icon (click)="toggleDrawer(message)" class="start-thread">
+                                        chat
+                                    </mat-icon>
+                                </div>
+                                <div *ngIf="message.thread === false">
+                                    <mat-icon (click)="toggleDrawer(message)" class="start-thread">
+                                        chat_bubble_outline
+                                    </mat-icon>
+                                </div>
+                            </div>
+                            <div class="from-card-message">
+                                <p>{{message.text}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="messages.length == 0">
+                    No Chat Details with {{ selected.first_name }} {{ selected.last_name }}
+                </div>
+            </div>
+            <div class="messages-textarea-container">
+                <div class="messages-textarea-input">
+                    <textarea matInput></textarea>
+                </div>
+                <div class="messages-textarea-button">
+                    <button mat-raised-button color="primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+
+</mat-drawer-container>

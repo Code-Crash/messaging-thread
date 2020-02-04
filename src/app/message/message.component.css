@@ -1,0 +1,209 @@
+.side-container {
+    width: 100%;
+    height: 80%;
+    /* padding: 10px; */
+    border: 1px solid #555;
+}
+
+
+.content {
+    width: 100%;
+    background: "lightblue";
+    display: flex;
+}
+
+.sidebar {
+    flex: 1;
+    border: 1px solid gray;
+    overflow: scroll;
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.profile-container {}
+
+.profile-card {
+    display: flex;
+    border: 1px solid #b9b9b9;
+    box-shadow: 0px 0px 7px -2px;
+    cursor: pointer;
+}
+
+.active-profile {
+    background: #d0d0d0;
+}
+
+.profile-card .avatar {}
+
+.profile-card .name {
+    margin-left: 10px;
+}
+
+
+.messages-container {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-header {
+    flex: 1;
+    height: 100%;
+    background: #d2d2d2;
+    display: flex;
+}
+
+.messages-header div:first-child {
+    padding: 5px;
+}
+
+.messages-header div:nth-child(2) {
+    padding: 5px;
+    line-height: 1;
+    line-height: 2.5;
+}
+
+.messages-body {
+    flex: 8;
+    height: 100%;
+    background: #fafafa;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    align-content: center;
+    width: 100%;
+    overflow: scroll;
+    padding: 20px 0px;
+}
+
+.messages-body .body-from-card {
+    width: 96%;
+    margin-top: 14px;
+    color: #3b3b3c;
+    border: 0;
+    box-shadow: 0px 0px 10px 0px;
+    border-radius: 2px;
+    margin-left: 25px;
+}
+
+.messages-body .body-from-card .from-card {
+    display: flex;
+}
+
+.from-card .from-card-left {
+    flex-shrink: 0;
+    margin-right: 8px;
+    display: flex;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.from-card .from-card-right {
+    padding: 8px;
+    width: 100%;
+}
+
+.form-card-profile {
+    width: 100%;
+}
+
+.from-card-name {
+    float: left;
+}
+
+.from-card-time {
+    float: right;
+}
+
+.from-card-message {
+    width: 100%;
+    clear: both;
+}
+
+.from-card-message p {
+    float: left;
+}
+
+.messages-textarea-container {
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    align-content: center;
+    width: 100%;
+}
+
+.messages-textarea-container textarea {
+    width: 95%;
+    height: 67px;
+    margin-top: 10px;
+    resize: none;
+    color: #136bc5;
+    border: 0;
+    box-shadow: 0px 0px 10px 0px;
+    border-radius: 4px;
+}
+
+.messages-textarea-container button {
+    margin-right: 25px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+    float: right;
+}
+
+.messages-textarea-input {
+    width: 100%;
+}
+
+.messages-textarea-button {
+    width: 100%;
+
+}
+
+.start-thread {
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.drawer-container {
+    min-width: 15%;
+}
+
+.drawer-header {
+    width: 100%;
+    background: #d2d2d2;
+    display: flex;
+}
+
+.drawer-header .avatar-container {
+    margin: 5px 0px 0px 10px;
+    flex: 1;
+}
+
+.drawer-header .name {
+    line-height: 3;
+    margin-left: 10px;
+    flex: 28;
+}
+
+.drawer-header .drawer-icon {
+    line-height: 3;
+    margin-left: 15px;
+    font-size: 15px;
+    color: #d26565;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+}
+
+.drawer-body {
+    width: 100%;
+}
