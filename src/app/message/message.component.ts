@@ -16,6 +16,9 @@ export class MessageComponent implements OnInit {
   messages = [];
   selected = USERS[1];
   threads = [];
+  currentMessage = {};
+  currentFrom = {};
+  currentTo = {};
   @ViewChild('drawer', { static: true }) public drawer: MatDrawer;
 
   constructor(private service: SharedService) {
@@ -38,9 +41,15 @@ export class MessageComponent implements OnInit {
   toggleDrawer(message) {
     if (message && message.thread) {
       this.threads = THREAD_MESSAGES.filter((thread) => thread.msg_id === message.id);
+      this.currentMessage = message;
+      this.currentFrom = this.users.find((user) => user.id === message.from_id);
+      this.currentTo = this.users.find((user) => user.id === message.to_id);
       this.service.toggle();
     } else {
       this.threads = [];
+      this.currentMessage = {};
+      this.currentFrom = {};
+      this.currentTo = {};
       this.service.toggle();
     }
   }

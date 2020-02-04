@@ -26,7 +26,7 @@
     flex-shrink: 0;
 }
 
-.profile-container {}
+/* .profile-container {} */
 
 .profile-card {
     display: flex;
@@ -39,7 +39,7 @@
     background: #d0d0d0;
 }
 
-.profile-card .avatar {}
+/* .profile-card .avatar {} */
 
 .profile-card .name {
     margin-left: 10px;

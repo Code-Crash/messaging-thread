@@ -7,5 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ThreadComponent {
   @Input() threads: any[];
+  @Input() message: object;
+  @Input() from: object;
+  @Input() to: object;
   constructor() { }
 }

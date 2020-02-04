@@ -1,9 +1,15 @@
 <div>
-    <ul>
-        <li *ngFor="let thread of threads">
-            {{thread | json}}
-        </li>
-    </ul>
+    <div>
+        {{message | json}}
+    </div>
+    <div>
+        <ul>
+            <li *ngFor="let thread of threads">
+                {{thread | json}}
+            </li>
+
+        </ul>
+    </div>
     <div *ngIf="threads.length === 0">
         No Threads are available for this message
     </div>
