@@ -11,9 +11,7 @@ export class ThreadComponent {
   @Input() message: object;
   @Input() from: object;
   @Input() to: object;
-  constructor(private service: SharedService) {
-
-  }
+  constructor(private service: SharedService) { }
 
   getFromUser(message) {
     return this.service.getFromUser(message);

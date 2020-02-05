@@ -55,3 +55,38 @@
   clear: both;
   margin-left: 35px;
 }
+
+.thread-textarea-container {
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+  align-content: center;
+  width: 100%;
+}
+
+.thread-textarea-container textarea {
+  width: 95%;
+  height: 67px;
+  margin-top: 10px;
+  resize: none;
+  color: #136bc5;
+  border: 0;
+  box-shadow: 0px 0px 10px 0px;
+  border-radius: 4px;
+}
+
+.thread-textarea-container button {
+  margin-right: 6px;
+  margin-bottom: 10px;
+  margin-top: 8px;
+  float: right;
+}
+
+.thread-textarea-input {
+  width: 100%;
+}
+
+.thread-textarea-button {
+  width: 100%;
+}

@@ -22,10 +22,17 @@
                 </div>
                 <div class="time">{{thread._created_at | date}}</div>
             </li>
-
         </ul>
     </div>
     <div *ngIf="threads.length === 0">
         No Threads are available for this message
+    </div>
+    <div class="thread-textarea-container">
+        <div class="thread-textarea-input">
+            <textarea matInput></textarea>
+        </div>
+        <div class="thread-textarea-button">
+            <button mat-raised-button color="primary">Send</button>
+        </div>
     </div>
 </div>
