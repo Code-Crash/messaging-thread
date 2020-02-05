@@ -1,11 +1,26 @@
 <div>
-    <div>
-        {{message | json}}
+    <div class="msg-container">
+        <div class="mgs">{{message.text}}</div>
+        <div class="time">{{message._created_at | date}}</div>
     </div>
-    <div>
+    <div class="threads-container">
         <ul>
             <li *ngFor="let thread of threads">
-                {{thread | json}}
+                <div class="msg">
+                    <div class="thead-icon">
+                        <mat-icon>
+                            textsms
+                        </mat-icon>
+                    </div>
+                    <div class="user">
+                        {{thread | getUserName:'from'}}
+                        <!-- {{thread | getUserName:'to'}} -->
+                    </div>
+                    <div class="text">
+                        {{thread.text}}
+                    </div>
+                </div>
+                <div class="time">{{thread._created_at | date}}</div>
             </li>
 
         </ul>

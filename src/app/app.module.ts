@@ -11,12 +11,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialModule } from './material-module';
 import { SharedService } from './common/shared.service';
 import { FromUserDirectiveDirective } from './directives/from-user-directive.directive';
+import { GetUserNamePipe } from './directives/get-user-name.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     MessageComponent,
     ThreadComponent,
-    FromUserDirectiveDirective
+    FromUserDirectiveDirective,
+    GetUserNamePipe
   ],
   imports: [
     BrowserModule,

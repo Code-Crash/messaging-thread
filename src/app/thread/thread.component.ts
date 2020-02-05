@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SharedService } from '../common/shared.service';
 
 @Component({
   selector: 'app-thread',
@@ -10,5 +11,16 @@ export class ThreadComponent {
   @Input() message: object;
   @Input() from: object;
   @Input() to: object;
-  constructor() { }
+  constructor(private service: SharedService) {
+
+  }
+
+  getFromUser(message) {
+    return this.service.getFromUser(message);
+  }
+
+  getToUser(message) {
+    return this.service.getToUser(message);
+  }
+
 }

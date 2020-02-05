@@ -1,0 +1,57 @@
+.msg-container {
+  margin: 10px;
+  font-size: 13px;
+  font-family: fantasy;
+  clear: both;
+}
+
+.msg-container .msg {
+  float: left;
+}
+
+.msg-container .time {
+  float: right;
+  color: #a0a0a0;
+}
+
+.threads-container {
+  clear: both;
+  margin: 10px;
+  font-family: monospace;
+  clear: both;
+  overflow: hidden;
+}
+
+.threads-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.threads-container .msg {
+  float: left;
+  width: 100%;
+}
+
+.threads-container .time {
+  float: right;
+  color: #a0a0a0;
+  width: 100%;
+  text-align: right;
+  padding: 5px 0px;
+}
+
+.threads-container .thead-icon {
+  float: left;
+  margin-right: 10px;
+}
+
+.threads-container .user {
+  float: left;
+}
+
+.threads-container .text {
+  float: left;
+  clear: both;
+  margin-left: 35px;
+}

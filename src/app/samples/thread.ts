@@ -22,7 +22,7 @@ const THREAD_MESSAGES = [
         msg_id: 10,
         from_id: 1,
         to_id: 2,
-        text: 'Okay, so the issue is api call with login',
+        text: 'so the issue is api call with login?',
         _created_at: '2019-10-15T16:54:02.597+0000',
         _updated_at: '2019-12-31T02:41:32.212+0000'
     },

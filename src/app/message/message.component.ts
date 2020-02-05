@@ -23,6 +23,7 @@ export class MessageComponent implements OnInit {
 
   constructor(private service: SharedService) {
     this.onProfileSelect(this.selected);
+    this.service.users = this.users; // Set Users to service
   }
 
   ngOnInit() {
@@ -55,19 +56,11 @@ export class MessageComponent implements OnInit {
   }
 
   getFromUser(message) {
-    if (message && message.from_id) {
-      return this.users.find((user) => user.id === message.from_id);
-    } else {
-      return {};
-    }
+    return this.service.getFromUser(message);
   }
 
   getToUser(message) {
-    if (message && message.to_id) {
-      return this.users.find((user) => user.id === message.to_id);
-    } else {
-      return {};
-    }
+    return this.service.getToUser(message);
   }
 
 }

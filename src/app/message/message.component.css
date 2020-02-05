@@ -174,7 +174,7 @@
 }
 
 .drawer-container {
-    min-width: 15%;
+    width: 300px;
 }
 
 .drawer-header {
@@ -191,7 +191,7 @@
 .drawer-header .name {
     line-height: 3;
     margin-left: 10px;
-    flex: 28;
+    flex: 12;
 }
 
 .drawer-header .drawer-icon {
