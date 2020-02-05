@@ -19,11 +19,25 @@ export class MessageComponent implements OnInit {
   currentMessage = {};
   currentFrom = {};
   currentTo = {};
+  message: Message;
+
   @ViewChild('drawer', { static: true }) public drawer: MatDrawer;
 
   constructor(private service: SharedService) {
     this.onProfileSelect(this.selected);
     this.service.users = this.users; // Set Users to service
+    this.reset();
+  }
+
+
+  reset() {
+    this.message = {
+      id: null,
+      from_id: null,
+      to_id: null,
+      text: '',
+      thread: false,
+    };
   }
 
   ngOnInit() {
@@ -63,4 +77,56 @@ export class MessageComponent implements OnInit {
     return this.service.getToUser(message);
   }
 
+  idValidator(id, type: string): boolean {
+    let ids = [];
+    if (type === 'message') {
+      ids = this.messages.filter((msg) => msg.id === id);
+    } else if (type === 'user') {
+      ids = this.users.filter((user) => user.id === id);
+    } else {
+      ids = this.users.filter((user) => user.id === id);
+    }
+
+    if (ids.length) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  idGenerator(type: string): number {
+    const id = Math.floor((Math.random() * 10000) + 1);
+    const isValid = this.idValidator(id, type);
+    if (isValid) {
+      return id;
+    } else {
+      return this.idGenerator(type);
+    }
+  }
+
+  onPost(message: Message): void {
+    message.id = this.idGenerator('message');
+    message.from_id = this.currentUser.id;
+    message.to_id = this.selected.id;
+    message.thread = false;
+    message._created_at = new Date().toISOString();
+    message._updated_at = new Date().toISOString();
+    this.messages.push(message);
+    this.reset();
+  }
+
+}
+
+
+/**
+ * @description This is a Message Model
+ */
+interface Message {
+  id: number;
+  from_id: number;
+  to_id: number;
+  text: string;
+  thread: boolean;
+  _created_at?: string;
+  _updated_at?: string;
 }

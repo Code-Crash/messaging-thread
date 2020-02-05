@@ -16,7 +16,8 @@
                 <mat-icon (click)="toggleDrawer(message)" class="drawer-icon">close</mat-icon>
             </div>
             <div class="drawer-body">
-                <app-thread [threads]="threads" [message]="currentMessage" [from]="currentFrom" [to]="currentTo"></app-thread>
+                <app-thread [threads]="threads" [message]="currentMessage" [from]="currentFrom" [to]="currentTo">
+                </app-thread>
             </div>
         </div>
     </mat-drawer>
@@ -101,10 +102,10 @@
             </div>
             <div class="messages-textarea-container">
                 <div class="messages-textarea-input">
-                    <textarea matInput></textarea>
+                    <textarea matInput [(ngModel)]="message.text"></textarea>
                 </div>
                 <div class="messages-textarea-button">
-                    <button mat-raised-button color="primary">Send</button>
+                    <button mat-raised-button color="primary" (click)="onPost(message)">Send</button>
                 </div>
             </div>
         </div>
