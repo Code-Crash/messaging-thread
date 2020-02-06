@@ -16,7 +16,7 @@
                 <mat-icon (click)="toggleDrawer(message)" class="drawer-icon">close</mat-icon>
             </div>
             <div class="drawer-body">
-                <app-thread [threads]="threads" [message]="currentMessage" [from]="currentFrom" [to]="currentTo">
+                <app-thread [threads]="threads" [message]="currentMessage" [user]="currentUser">
                 </app-thread>
             </div>
         </div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="name"> {{ selected.first_name }} {{ selected.last_name }} </div>
             </div>
-            <div class="messages-body">
+            <div class="messages-body" #scroll>
                 <div class="body-from-card" *ngFor="let message of messages" #fromUser="appFromUserDirective"
                     [appFromUserDirective]="getFromUser(message)">
                     <div class="from-card">
@@ -105,7 +105,7 @@
                     <textarea matInput [(ngModel)]="message.text"></textarea>
                 </div>
                 <div class="messages-textarea-button">
-                    <button mat-raised-button color="primary" (click)="onPost(message)">Send</button>
+                    <button mat-raised-button color="primary" (click)="onPostMessage(message)">Send</button>
                 </div>
             </div>
         </div>

@@ -40,4 +40,33 @@ export class SharedService {
         }
     }
 
+    idValidator(id, type: string, objects: any[]): boolean {
+        let ids = [];
+        // if (type === 'message') {
+        //     ids = objects.filter((object) => object.id === id);
+        // } else if (type === 'user') {
+        //     ids = objects.filter((user) => user.id === id);
+        // } else if (type === 'thread') {
+        //     ids = objects.filter((user) => user.id === id);
+        // } else {
+        //     ids = objects.filter((user) => user.id === id);
+        // }
+        ids = objects.filter((object) => object.id === id);
+        if (ids.length) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    idGenerator(type: string, objects: any[]): number {
+        const id = Math.floor((Math.random() * 10000) + 1);
+        const isValid = this.idValidator(id, type, objects);
+        if (isValid) {
+            return id;
+        } else {
+            return this.idGenerator(type, objects);
+        }
+    }
+
 }

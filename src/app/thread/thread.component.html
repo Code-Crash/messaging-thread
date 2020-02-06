@@ -5,22 +5,20 @@
     </div>
     <div class="threads-container">
         <ul>
-            <li *ngFor="let thread of threads">
+            <li *ngFor="let item of threads">
                 <div class="msg">
                     <div class="thead-icon">
-                        <mat-icon>
-                            textsms
-                        </mat-icon>
+                        <mat-icon>textsms</mat-icon>
                     </div>
                     <div class="user">
-                        {{thread | getUserName:'from'}}
+                        {{item | getUserName:'from'}}
                         <!-- {{thread | getUserName:'to'}} -->
                     </div>
                     <div class="text">
-                        {{thread.text}}
+                        {{item.text}}
                     </div>
                 </div>
-                <div class="time">{{thread._created_at | date}}</div>
+                <div class="time">{{item._created_at | date}}</div>
             </li>
         </ul>
     </div>
@@ -29,10 +27,10 @@
     </div>
     <div class="thread-textarea-container">
         <div class="thread-textarea-input">
-            <textarea matInput></textarea>
+            <textarea matInput [(ngModel)]="thread.text"></textarea>
         </div>
         <div class="thread-textarea-button">
-            <button mat-raised-button color="primary">Send</button>
+            <button mat-raised-button color="primary" (click)="onPostThread(thread)">Send</button>
         </div>
     </div>
 </div>

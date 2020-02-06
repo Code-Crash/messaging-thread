@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { SharedService } from '../common/shared.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import USERS from '../samples/users';
@@ -10,18 +10,17 @@ import THREAD_MESSAGES from '../samples/thread';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent implements OnInit, AfterViewChecked {
   users = USERS;
   currentUser = this.users.find((user) => user.id === 1);
   messages = [];
   selected = USERS[1];
   threads = [];
   currentMessage = {};
-  currentFrom = {};
-  currentTo = {};
   message: Message;
 
   @ViewChild('drawer', { static: true }) public drawer: MatDrawer;
+  @ViewChild('scroll', { static: true }) private scrollable: ElementRef;
 
   constructor(private service: SharedService) {
     this.onProfileSelect(this.selected);
@@ -29,6 +28,13 @@ export class MessageComponent implements OnInit {
     this.reset();
   }
 
+  scroll(): void {
+    try {
+      this.scrollable.nativeElement.scrollTop = this.scrollable.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log('Scroll Error:', err);
+    }
+  }
 
   reset() {
     this.message = {
@@ -42,6 +48,11 @@ export class MessageComponent implements OnInit {
 
   ngOnInit() {
     this.service.setDrawer(this.drawer);
+    this.scroll();
+  }
+
+  ngAfterViewChecked() {
+    this.scroll();
   }
 
   onProfileSelect(profile) {
@@ -54,19 +65,9 @@ export class MessageComponent implements OnInit {
   }
 
   toggleDrawer(message) {
-    if (message && message.thread) {
-      this.threads = THREAD_MESSAGES.filter((thread) => thread.msg_id === message.id);
-      this.currentMessage = message;
-      this.currentFrom = this.users.find((user) => user.id === message.from_id);
-      this.currentTo = this.users.find((user) => user.id === message.to_id);
-      this.service.toggle();
-    } else {
-      this.threads = [];
-      this.currentMessage = {};
-      this.currentFrom = {};
-      this.currentTo = {};
-      this.service.toggle();
-    }
+    this.threads = THREAD_MESSAGES.filter((thread) => thread.msg_id === message.id);
+    this.currentMessage = message;
+    this.service.toggle();
   }
 
   getFromUser(message) {
@@ -77,35 +78,8 @@ export class MessageComponent implements OnInit {
     return this.service.getToUser(message);
   }
 
-  idValidator(id, type: string): boolean {
-    let ids = [];
-    if (type === 'message') {
-      ids = this.messages.filter((msg) => msg.id === id);
-    } else if (type === 'user') {
-      ids = this.users.filter((user) => user.id === id);
-    } else {
-      ids = this.users.filter((user) => user.id === id);
-    }
-
-    if (ids.length) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  idGenerator(type: string): number {
-    const id = Math.floor((Math.random() * 10000) + 1);
-    const isValid = this.idValidator(id, type);
-    if (isValid) {
-      return id;
-    } else {
-      return this.idGenerator(type);
-    }
-  }
-
-  onPost(message: Message): void {
-    message.id = this.idGenerator('message');
+  onPostMessage(message: Message): void {
+    message.id = this.service.idGenerator('message', this.messages);
     message.from_id = this.currentUser.id;
     message.to_id = this.selected.id;
     message.thread = false;
